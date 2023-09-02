@@ -1,0 +1,55 @@
+(S0;A1;A5;A6)0;
+# Load 3 into register 2
+A2;A2;A2;
+# while R1 > 3 do R1 =- 3 done
+(
+  (S1;S2;A3)1;
+  A4;(S4;(S2)2)2;
+  (
+    S3;S3;S3;
+    (A1;S3)3;
+    A2;A2;A2;
+    S4
+  )4
+)2;
+# if R3 = 0 do R4 = 1 done
+A4;(S4;(S3)3)3;
+# Load 5 into register 2
+A2;A2;A2;A2;A2;
+# Move number from R5 back to R1
+(A1;S5)5;
+# Move prev result from R4 to R5
+(S4;A5)4;
+# while R1 > 5 do R1 =- 5 done
+(
+  (S1;S2;A3)1;
+  A4;(S4;(S2)2)2;
+  (
+    S3;S3;S3;S3;S3;
+    (A1;S3)3;
+    A2;A2;A2;A2;A2;
+    S4
+  )4
+)2;
+# if R3 = 0 do R4 = 1 done
+A4;(S4;(S3)3)3;
+# R4 = buzz (5)
+# R5 = fizz (3)
+# if fizz
+(
+  A3;
+  # if also fizzbuzz
+  (A1;A1;A1;S3;S4)4;
+  # else (just fizz)
+  (A1;S3)3;S5;
+  # clear number
+  (S6)6
+)5;
+# else if buzz
+(
+  A1;A1;S4;
+  # clear number
+  (S6)6
+)4;
+# else none
+(A0;S6)6

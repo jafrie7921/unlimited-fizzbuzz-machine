@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+	border-collapse: collapse;
+width: 100%;
+}
+
+td, th {
+border: 1px solid #dddddd;
+	text-align: left;
+padding: 8px;
+}
+
+tr:nth-child(even) {
+	   background-color: #dddddd;
+   }
+
+textarea {
+width: 95%;
+}
+
+</style>
+</head>  
+<script src="index.js" defer></script>
+<body>
+<label for="code">Code:<label/>  		
+<br /> 
+<textarea id="code" name="code" rows="10" cols="80" placeholder="Code..." autofocus></textarea>  
+<br /> 
+<br /> 
+<label for="input">Inputs:<label/>  		
+<br /> 
+<textarea id="input" name="input" rows="10" cols="20" placeholder="inputs"></textarea> 
+<br/>  
+<br/>  
+<button type="button" onClick="runUrm()">Run</button>  
+<br/>  
+<br/>  
+<div id="result"></div>
+</body>
+</html>
