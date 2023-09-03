@@ -5,53 +5,51 @@
 class Urm {
 	constructor(registers = []) {
 		this.registers = registers;
-		this.history = [];
 		this.prints = [];
-		// this.archiveRegisters();
+		this.instructions = 0;
+		this.checks = 0;
 	}
 
 	add(n) {
+		++this.instructions;
 		this.fitRegisters(n);
 		this.registers[n] += 1;
-		this.archiveRegisters();
 	}
 
 	sub(n) {
+		++this.instructions;
 		this.fitRegisters(n);
 		if(this.registers[n] > 0) {
 			this.registers[n] -= 1;
-			this.archiveRegisters();
 		}
 	}
 
 	isZero(n) {
+		++this.checks;
 		return this.registers[n] === 0;
 	}
 
 	printRegisters() {
-		this.prints.push([...this.registers]);
-	}
-
-	archiveRegisters() {
-		this.history.push([...this.registers]);
-	}
-
-	fitRegisters(n) {
-		while(this.registers.length <= n){
-			this.registers.push(0);		
+		this.prints.push(				
+				{
+registers: [...this.registers],
+instructions: this.instructions,
+checks: this.checks,
+}
+);
 		}
-	}
 
-	numberOfInstructions() {
-		return this.history.length;
+fitRegisters(n) {
+	while(this.registers.length <= n){
+		this.registers.push(0);		
 	}
+}
 }
 
 class Program { 
 	constructor() {}
 
-	execute(urm) {
-	}
+	execute(urm) {}
 
 	canFinish() {
 		return false;
@@ -212,8 +210,7 @@ function runUrm() {
 	const code = document.getElementById("code").value
 		.replaceAll("\n\r", "\n")
 		.replaceAll(" ", "")
-		.split("\n")
-		.filter(it => !it.startsWith("#")).join("") // Remove Comments
+		.split("\n").map(it => it.replace(/#.*$/i, "")).join("") // Remove comments
 		.replaceAll("\n", "");
 
 	const program = parseProgram(code)[0];
@@ -231,8 +228,8 @@ function runUrm() {
 			const registers = input.split(" ").map(it => +it);
 			const urm = new Urm(registers);
 			program.execute(urm);
-			const header = "<tr>" + "<th>Input</th><th>#Instructions</th>"  + [... new Array(urm.registers.length).keys()].map(it => `<th>R${it}</th>`).join("") + "</tr>"; 
-			const content = urm.prints.map(print => "<tr>" + `<td>${input}</td><td>${urm.numberOfInstructions()}</td>`  + print.map(reg => `<td>${reg}</td>`).join("") + "</tr>").join("");
+			const header = "<tr>" + "<th>#Instructions</th><th>#Checks</th>"  + [... new Array(urm.registers.length).keys()].map(it => `<th>R${it}</th>`).join("") + "</tr>"; 
+			const content = urm.prints.map(print => "<tr>" + `<td>${print.instructions}</td><td>${print.checks}</td>`  + print.registers.map(reg => `<td>${reg}</td>`).join("") + "</tr>").join("");
 
 			return "<table>" + header + content + "</table>";
 			});
