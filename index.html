@@ -8,17 +8,17 @@ width: 100%;
 }
 
 td, th {
-border: 1px solid #dddddd;
+border: 1px solid #bbbbbb;
 	text-align: left;
-padding: 8px;
+padding: 5px;
 }
 
-tr:nth-child(even) {
-	   background-color: #dddddd;
+tr:nth-child(odd) {
+	   background-color: #eeeeee;
    }
 
 textarea {
-width: 95%;
+width: 99%;
 }
 
 </style>
@@ -29,11 +29,11 @@ width: 95%;
 <br /> 
 <textarea id="code" name="code" rows="10" cols="80" placeholder="Code..." autofocus></textarea>  
 <br /> 
-<br /> 
-<label for="input">Inputs:<label/>  		
-<br /> 
-<textarea id="input" name="input" rows="10" cols="20" placeholder="inputs"></textarea> 
-<br/>  
+<br />
+<details> 
+<summary><label for="input">Inputs:<label/></summary> 
+<textarea id="input" name="input" rows="10" cols="20" placeholder="Inputs..."></textarea>
+</details> 
 <br/>  
 <button type="button" onClick="runUrm()">Run</button>  
 <br/>  
