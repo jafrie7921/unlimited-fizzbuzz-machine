@@ -1,0 +1,64 @@
+# R9 = 100
+A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;
+A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;
+A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;
+A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;
+A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;A9;
+
+# Loop from 1 to 100
+(A8;(A0;A7;S8)8;
+
+# Fizzbuzz logic
+(S1)1;P;(S0;A1;A5;A6)0;
+A2;A2;A2;P;
+( # while R1 > 3 : R1 =- 3
+  (S1;S2;A3)1;
+  A4;(S4;(S2)2)2;
+  (
+    S3;S3;S3;
+    (A1;S3)3;
+    A2;A2;A2;
+    S4;P
+  )4
+)2;
+# if R3 = 0 : R4 = 1
+A4;(S4;(S3)3)3;P;
+A2;A2;A2;A2;A2;
+(A1;S5)5;P;
+(S4;A5)4;
+( # while R1 > 5 : R1 =- 5 done
+  (S1;S2;A3)1;
+  A4;(S4;(S2)2)2;
+  (
+    S3;S3;S3;S3;S3;
+    (A1;S3)3;
+    A2;A2;A2;A2;A2;
+    S4;P
+  )4
+)2;
+# if R3 = 0 : R4 = 1
+A4;(S4;(S3)3)3;P;
+# R4 = buzz (5)
+# R5 = fizz (3)
+# if fizz
+(
+  A3;
+  # if also fizzbuzz
+  (A1;A1;A1;S3;S4)4;
+  # else (just fizz)
+  (A1;S3)3;S5;
+  # clear number
+  (S6)6
+)5;
+# else if buzz
+(
+  A1;A1;S4;
+  # clear number
+  (S6)6
+)4;
+# else none
+(A0;S6)6;
+P;
+# continue loop
+(S0)0;(S7;A8)7;S9
+)9
