@@ -5,8 +5,9 @@
 ```
 An   # Rn += 1
 Sn   # Rn -= 1
-(P)n # while Rn != 0 : P
-P;Q  # Do P then Q
+(F)n # while Rn != 0 : F
+F;G  # Do F then G
+P    # Print current state
 # _  # Line comment
 ```
 
